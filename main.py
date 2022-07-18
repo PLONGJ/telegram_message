@@ -13,7 +13,6 @@ def sendMessage():
 
     api_hash = os.getenv('TG_APP_HASH')
 
-    # to_username = '@ecyjcbot,@sttlink_bot'
     to_user_name_arr = os.getenv('TG_TO_USER_NAME').split(',')
 
     message_content = os.getenv('TG_MESSAGE_CONTENT')
