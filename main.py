@@ -6,6 +6,16 @@ import os
 import time
 from telethon.sync import TelegramClient
 
+import requests
+
+def get_JF():
+    jf_url = 'https://wx.huafamall.cn/wxmall/wxsite/mbr/signin.do?wxpubid=gh_3e33c7377a96&wxopenid=oLVyYjuadRRvvzJ21X7JAYQDED_o'
+    response = requests.get('https://wx.huafamall.cn/wxmall/wxsite/mbr/signin.do',{
+        'wxpubid':'gh_3e33c7377a96',
+        'wxopenid':'oLVyYjuadRRvvzJ21X7JAYQDED_o'
+    })
+    res = response.json()
+    print(res['message'])
 
 def sendMessage():
 
@@ -34,5 +44,5 @@ def sendMessage():
 # 按间距中的绿色按钮以运行脚本。
 if __name__ == '__main__':
     sendMessage()
-
+    get_JF()
 # 访问 https://www.jetbrains.com/help/pycharm/ 获取 PyCharm 帮助
