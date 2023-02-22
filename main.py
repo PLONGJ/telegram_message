@@ -14,6 +14,8 @@ def get_JF():
         'wxpubid':'gh_3e33c7377a96',
         'wxopenid':'oLVyYjuadRRvvzJ21X7JAYQDED_o'
     })
+    print('WX_PUB_ID',os.getenv('WX_PUB_ID'))
+    print('WX_OPEN_ID',os.getenv('WX_OPEN_ID'))
     res = response.json()
     print(res['message'])
 
