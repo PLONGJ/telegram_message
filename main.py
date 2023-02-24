@@ -9,24 +9,19 @@ from telethon.sync import TelegramClient
 import requests
 
 def get_JF():
-    jf_url = 'https://wx.huafamall.cn/wxmall/wxsite/mbr/signin.do?wxpubid=gh_3e33c7377a96&wxopenid=oLVyYjuadRRvvzJ21X7JAYQDED_o'
+    # jf_url = 'https://wx.huafamall.cn/wxmall/wxsite/mbr/signin.do?wxpubid=gh_3e33c7377a96&wxopenid=oLVyYjuadRRvvzJ21X7JAYQDED_o'
     response = requests.get('https://wx.huafamall.cn/wxmall/wxsite/mbr/signin.do',{
         'wxpubid':'gh_3e33c7377a96',
         'wxopenid':'oLVyYjuadRRvvzJ21X7JAYQDED_o'
     })
-    print('WX_PUB_ID',os.getenv('WX_PUB_ID'))
-    print('WX_OPEN_ID',os.getenv('WX_OPEN_ID'))
     res = response.json()
     print(res['message'])
 
 def sendMessage():
 
     api_id = os.getenv('TG_APP_ID')
-    print('TG_APP_ID',api_id)
 
     api_hash = os.getenv('TG_APP_HASH')
-    print('TG_APP_HASH',api_hash)
-    print('WX_PUB_ID',os.getenv('WX_PUB_ID'))
 
     to_user_name_arr = os.getenv('TG_TO_USER_NAME').split(',')
 
