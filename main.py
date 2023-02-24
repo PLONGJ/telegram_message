@@ -22,8 +22,10 @@ def get_JF():
 def sendMessage():
 
     api_id = os.getenv('TG_APP_ID')
+    print('TG_APP_ID',api_id)
 
     api_hash = os.getenv('TG_APP_HASH')
+    print('TG_APP_HASH',api_hash)
 
     to_user_name_arr = os.getenv('TG_TO_USER_NAME').split(',')
 
