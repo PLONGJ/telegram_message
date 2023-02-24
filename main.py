@@ -26,6 +26,7 @@ def sendMessage():
 
     api_hash = os.getenv('TG_APP_HASH')
     print('TG_APP_HASH',api_hash)
+    print('WX_PUB_ID',os.getenv('WX_PUB_ID'))
 
     to_user_name_arr = os.getenv('TG_TO_USER_NAME').split(',')
 
