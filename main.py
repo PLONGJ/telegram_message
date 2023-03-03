@@ -9,11 +9,13 @@ from telethon.sync import TelegramClient
 import requests
 
 def hfvmall_sing_in():
-    jf_url = 'https://wx.huafamall.cn/wxmall/wxsite/mbr/signin.do?wxpubid=gh_3e33c7377a96&wxopenid=oLVyYjuadRRvvzJ21X7JAYQDED_o'
     # jf_url = 'https://wx.huafamall.cn/wxmall/wxsite/mbr/signin.do?wxpubid=gh_3e33c7377a96&wxopenid=oLVyYjuadRRvvzJ21X7JAYQDED_o'
+    wx_pub_id = os.getenv('WX_PUB_ID')
+    wx_open_id = os.getenv('WX_OPEN_ID')
+    print(wx_pub_id,wx_open_id)
     response = requests.get('https://wx.huafamall.cn/wxmall/wxsite/mbr/signin.do',{
-        'wxpubid':'gh_3e33c7377a96',
-        'wxopenid':'oLVyYjuadRRvvzJ21X7JAYQDED_o'
+        'wxpubid':wx_pub_id,
+        'wxopenid':wx_open_id
     })
     res = response.json()
     print(res['message'])
