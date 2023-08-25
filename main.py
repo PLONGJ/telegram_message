@@ -9,7 +9,7 @@ from telethon.sync import TelegramClient
 import requests
 
 def hfvmall_sing_in():
-    print('配置文件' + os.getenv('WX_TOKEN'))
+    print('配置文件TOKEN：{}'.format(os.getenv('WX_TOKEN')))
     token = os.getenv('WX_TOKEN') | 'GS_bkJpIwkuLS-EAtClzWQ2ZkygKuydE'
     print(token)
     response = requests.post('https://m.mallcoo.cn/api/user/User/CheckinV2', {}, {
