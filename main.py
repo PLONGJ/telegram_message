@@ -13,7 +13,7 @@ def hfvmall_sing_in():
     response = requests.post('https://m.mallcoo.cn/api/user/User/CheckinV2', {}, {
         "MallID": 12614,
         "Header": {
-            "Token": "%s,17403".format(token),
+            "Token": '{},17403'.format(token),
             "systemInfo": {
                 "miniVersion": "DZ.2.5.63.2.SNS.7",
                 "system": "iOS 16.6",
@@ -24,7 +24,7 @@ def hfvmall_sing_in():
         }
     })
     res = response.json()
-    print(res['d']['Msg'])
+    print(response.text)
 
 def sendMessage():
 
@@ -52,5 +52,5 @@ def sendMessage():
 
 # 按间距中的绿色按钮以运行脚本。
 if __name__ == '__main__':
-    sendMessage()
+    # sendMessage()
     hfvmall_sing_in()
