@@ -9,10 +9,11 @@ from telethon.sync import TelegramClient
 import requests
 
 def hfvmall_sing_in():
+    token = os.getenv("WX_TOKEN")
     response = requests.post('https://m.mallcoo.cn/api/user/User/CheckinV2', {}, {
         "MallID": 12614,
         "Header": {
-            "Token": "GS_bkJpIwkuLS-EAtClzWQ2ZkygKuydE,17403",
+            "Token": "%s,17403".format(token),
             "systemInfo": {
                 "miniVersion": "DZ.2.5.63.2.SNS.7",
                 "system": "iOS 16.6",
