@@ -39,5 +39,7 @@ jobs:
         TG_TO_USER_NAME: ${{ secrets.TG_TO_USER_NAME }}
         TG_APP_ID: ${{ secrets.TG_APP_ID }}
         TG_APP_HASH: ${{ secrets.TG_APP_HASH }}
+        WX_PUB_ID: ${{ secrets.WX_PUB_ID}}
+        WX_OPEN_ID: ${{ secrets.WX_OPEN_ID }}
       run: |
         python ./main.py
