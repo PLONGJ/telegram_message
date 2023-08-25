@@ -9,9 +9,11 @@ from telethon.sync import TelegramClient
 import requests
 
 def hfvmall_sing_in():
-    print('配置文件TOKEN：{}'.format(os.getenv('WX_TOKEN')))
-    token = os.getenv('WX_TOKEN') | 'GS_bkJpIwkuLS-EAtClzWQ2ZkygKuydE'
-    print(token)
+    if os.getenv('WX_TOKEN') is None:
+        print('配置文件TOKEN为空')
+        token = 'GS_bkJpIwkuLS-EAtClzWQ2ZkygKuydE'
+    else:
+        token = os.getenv('WX_TOKEN')
     response = requests.post('https://m.mallcoo.cn/api/user/User/CheckinV2', {}, {
         "MallID": 12614,
         "Header": {
