@@ -32,17 +32,6 @@ def hfvmall_sing_in():
     print(res['d']['Msg'])
 
 
-def xiwei_checkin():
-    checkInUrl = 'https://zhongshan.xiweigas.com/api/mobile/user/userSignIn'
-    now_time = str(int(time.time()))
-    headers = {
-        'Cookie': 'Hm_lpvt_c439c5adcd8614f603da7372e6c8017d=' + now_time + ';Hm_lvt_c439c5adcd8614f603da7372e6c8017d=1693024120,' + now_time + ';SYSTEM_GLOBAL=sn453ab4t8eotqilg7ui3alru6',
-        'Referer': 'https://zhongshan.xiweigas.com/mobile/personalCenter.html?page=curPage'
-    }
-    response = requests.post(checkInUrl, {}, headers=headers)
-    print(response.text)
-
-
 def sendMessage():
     api_id = os.getenv('TG_APP_ID')
 
@@ -68,6 +57,5 @@ def sendMessage():
 
 # 按间距中的绿色按钮以运行脚本。
 if __name__ == '__main__':
-    xiwei_checkin()
     hfvmall_sing_in()
     sendMessage()
