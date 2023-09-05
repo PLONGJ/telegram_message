@@ -10,11 +10,7 @@ import requests
 
 
 def hfvmall_sing_in():
-    if os.getenv('WX_TOKEN') is None:
-        print('配置文件TOKEN为空')
-        token = 'GS_bkJpIwkuLS-EAtClzWQ2ZkygKuydE'
-    else:
-        token = os.getenv('WX_TOKEN')
+    token = 'GS_bkJpIwkuLS-EAtClzWQ2ZkygKuydE'
     response = requests.post('https://m.mallcoo.cn/api/user/User/CheckinV2', {}, {
         "MallID": 12614,
         "Header": {
@@ -31,6 +27,24 @@ def hfvmall_sing_in():
     res = response.json()
     print(res['d']['Msg'])
 
+
+def fhl_sign_in():
+    token = 'UqO_q0V9HUCQj06okIAQUgiFiooQT91k'
+    response = requests.post('https://m.mallcoo.cn/api/user/User/CheckinV2', {}, {
+        "MallID": 11906,
+        "Header": {
+            "Token": '{},16842'.format(token),
+            "systemInfo": {
+                "miniVersion": "2.5.63.2",
+                "system": "iOS 16.6",
+                "model": "iPhone 13 Pro<iPhone14,2>",
+                "SDKVersion": "3.0.1",
+                "version": "8.0.40"
+            }
+        }
+    })
+    res = response.json()
+    print(res['d']['Msg'])
 
 def sendMessage():
     api_id = os.getenv('TG_APP_ID')
@@ -58,4 +72,5 @@ def sendMessage():
 # 按间距中的绿色按钮以运行脚本。
 if __name__ == '__main__':
     hfvmall_sing_in()
+    fhl_sign_in()
     sendMessage()
