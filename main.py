@@ -46,6 +46,26 @@ def fhl_sign_in():
     res = response.json()
     print(res['d']['Msg'])
 
+
+def hyc_sign_in():
+    token = 'UqO_q0V9HUCQj06okIAQUgiFiooQT91k'
+    response = requests.post('https://m.mallcoo.cn/api/user/User/CheckinV2', {}, {
+        "MallID": 11898,
+        "Header": {
+            "Token": '{},16842'.format(token),
+            "systemInfo": {
+                "miniVersion": "2.5.63.2",
+                "system": "iOS 16.6",
+                "model": "iPhone 13 Pro<iPhone14,2>",
+                "SDKVersion": "3.0.1",
+                "version": "8.0.40"
+            }
+        }
+    })
+    res = response.json()
+    print(res['d']['Msg'])
+
+
 def sendMessage():
     api_id = os.getenv('TG_APP_ID')
 
@@ -73,4 +93,5 @@ def sendMessage():
 if __name__ == '__main__':
     hfvmall_sing_in()
     fhl_sign_in()
+    hyc_sign_in()
     sendMessage()
