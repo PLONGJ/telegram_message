@@ -10,83 +10,99 @@ import requests
 
 
 def hfvmall_sing_in():
-    token = 'GS_bkJpIwkuLS-EAtClzWQ2ZkygKuydE'
-    response = requests.post('https://m.mallcoo.cn/api/user/User/CheckinV2', {}, {
-        "MallID": 12614,
-        "Header": {
-            "Token": '{},17403'.format(token),
-            "systemInfo": {
-                "miniVersion": "DZ.2.5.63.2.SNS.7",
-                "system": "iOS 16.6",
-                "model": "iPhone 13 Pro<iPhone14,2>",
-                "SDKVersion": "3.0.1",
-                "version": "8.0.40"
+    try:
+        token = 'GS_bkJpIwkuLS-EAtClzWQ2ZkygKuydE'
+        response = requests.post('https://m.mallcoo.cn/api/user/User/CheckinV2', {}, {
+            "MallID": 12614,
+            "Header": {
+                "Token": '{},17403'.format(token),
+                "systemInfo": {
+                    "miniVersion": "DZ.2.5.63.2.SNS.7",
+                    "system": "iOS 16.6",
+                    "model": "iPhone 13 Pro<iPhone14,2>",
+                    "SDKVersion": "3.0.1",
+                    "version": "8.0.40"
+                }
             }
-        }
-    })
-    res = response.json()
-    print(res['d']['Msg'])
+        })
+        res = response.json()
+        print(res['d']['Msg'])
+    except Exception as e:
+        print(e)
+        pass
 
 
 def fhl_sign_in():
-    token = 'UqO_q0V9HUCQj06okIAQUgiFiooQT91k'
-    response = requests.post('https://m.mallcoo.cn/api/user/User/CheckinV2', {}, {
-        "MallID": 11906,
-        "Header": {
-            "Token": '{},16842'.format(token),
-            "systemInfo": {
-                "miniVersion": "2.5.63.2",
-                "system": "iOS 16.6",
-                "model": "iPhone 13 Pro<iPhone14,2>",
-                "SDKVersion": "3.0.1",
-                "version": "8.0.40"
+    try:
+        token = 'UqO_q0V9HUCQj06okIAQUgiFiooQT91k'
+        response = requests.post('https://m.mallcoo.cn/api/user/User/CheckinV2', {}, {
+            "MallID": 11906,
+            "Header": {
+                "Token": '{},16842'.format(token),
+                "systemInfo": {
+                    "miniVersion": "2.5.63.2",
+                    "system": "iOS 16.6",
+                    "model": "iPhone 13 Pro<iPhone14,2>",
+                    "SDKVersion": "3.0.1",
+                    "version": "8.0.40"
+                }
             }
-        }
-    })
-    res = response.json()
-    print(res['d']['Msg'])
+        })
+        res = response.json()
+        print(res['d']['Msg'])
+    except Exception as e:
+        print(e)
+        pass
 
 
 def hyc_sign_in():
-    token = 'UqO_q0V9HUCQj06okIAQUgiFiooQT91k'
-    response = requests.post('https://m.mallcoo.cn/api/user/User/CheckinV2', {}, {
-        "MallID": 11898,
-        "Header": {
-            "Token": '{},16842'.format(token),
-            "systemInfo": {
-                "miniVersion": "2.5.63.2",
-                "system": "iOS 16.6",
-                "model": "iPhone 13 Pro<iPhone14,2>",
-                "SDKVersion": "3.0.1",
-                "version": "8.0.40"
+    try:
+        token = 'UqO_q0V9HUCQj06okIAQUgiFiooQT91k'
+        response = requests.post('https://m.mallcoo.cn/api/user/User/CheckinV2', {}, {
+            "MallID": 11898,
+            "Header": {
+                "Token": '{},16842'.format(token),
+                "systemInfo": {
+                    "miniVersion": "2.5.63.2",
+                    "system": "iOS 16.6",
+                    "model": "iPhone 13 Pro<iPhone14,2>",
+                    "SDKVersion": "3.0.1",
+                    "version": "8.0.40"
+                }
             }
-        }
-    })
-    res = response.json()
-    print(res['d']['Msg'])
+        })
+        res = response.json()
+        print(res['d']['Msg'])
+    except Exception as e:
+        print(e)
+        pass
 
 
 def sendMessage():
-    api_id = os.getenv('TG_APP_ID')
+    try:
+        api_id = os.getenv('TG_APP_ID')
 
-    api_hash = os.getenv('TG_APP_HASH')
+        api_hash = os.getenv('TG_APP_HASH')
 
-    to_user_name_arr = os.getenv('TG_TO_USER_NAME').split(',')
+        to_user_name_arr = os.getenv('TG_TO_USER_NAME').split(',')
 
-    message_content = os.getenv('TG_MESSAGE_CONTENT')
+        message_content = os.getenv('TG_MESSAGE_CONTENT')
 
-    session_name = 'PLONGJ_CheckIn'
+        session_name = 'PLONGJ_CheckIn'
 
-    client = TelegramClient(session_name, api_id, api_hash)
-    client.start()
+        client = TelegramClient(session_name, api_id, api_hash)
+        client.start()
 
-    for to_user_name in to_user_name_arr:
-        client.send_message(to_user_name, message_content)
-        time.sleep(5)
-        client.send_read_acknowledge(to_user_name)
-        print('发动消息给' + to_user_name.replace('@', '') + '成功')
+        for to_user_name in to_user_name_arr:
+            client.send_message(to_user_name, message_content)
+            time.sleep(5)
+            client.send_read_acknowledge(to_user_name)
+            print('发动消息给' + to_user_name.replace('@', '') + '成功')
 
-    client.session.save()
+        client.session.save()
+    except Exception as e:
+        print(e)
+        pass
 
 
 # 按间距中的绿色按钮以运行脚本。
