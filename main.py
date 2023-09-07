@@ -11,7 +11,8 @@ import requests
 
 def hfvmall_sing_in():
     try:
-        token = 'GS_bkJpIwkuLS-EAtClzWQ2ZkygKuydE'
+        # token = 'GS_bkJpIwkuLS-EAtClzWQ2ZkygKuydE'
+        token = os.getenv('WX_VMALL_APPID')
         response = requests.post('https://m.mallcoo.cn/api/user/User/CheckinV2', {}, {
             "MallID": 12614,
             "Header": {
@@ -27,14 +28,14 @@ def hfvmall_sing_in():
         })
         res = response.json()
         print(res['d']['Msg'])
-    except Exception as e:
+    except requests.exceptions.RequestException as e:
         print(e)
-        pass
 
 
 def fhl_sign_in():
     try:
-        token = 'UqO_q0V9HUCQj06okIAQUgiFiooQT91k'
+        # token = 'UqO_q0V9HUCQj06okIAQUgiFiooQT91k'
+        token = os.getenv('WX_FHL_APPID')
         response = requests.post('https://m.mallcoo.cn/api/user/User/CheckinV2', {}, {
             "MallID": 11906,
             "Header": {
@@ -50,14 +51,14 @@ def fhl_sign_in():
         })
         res = response.json()
         print(res['d']['Msg'])
-    except Exception as e:
+    except requests.exceptions.RequestException as e:
         print(e)
-        pass
 
 
 def hyc_sign_in():
     try:
-        token = 'UqO_q0V9HUCQj06okIAQUgiFiooQT91k'
+        # token = 'UqO_q0V9HUCQj06okIAQUgiFiooQT91k'
+        token = os.getenv('WX_HYC_APPID')
         response = requests.post('https://m.mallcoo.cn/api/user/User/CheckinV2', {}, {
             "MallID": 11898,
             "Header": {
@@ -73,9 +74,8 @@ def hyc_sign_in():
         })
         res = response.json()
         print(res['d']['Msg'])
-    except Exception as e:
+    except requests.exceptions.RequestException as e:
         print(e)
-        pass
 
 
 def sendMessage():
@@ -102,7 +102,6 @@ def sendMessage():
         client.session.save()
     except Exception as e:
         print(e)
-        pass
 
 
 # 按间距中的绿色按钮以运行脚本。
