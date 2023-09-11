@@ -26,6 +26,7 @@ jobs:
         conda install pip
         pip install telethon
         pip install requests
+        pip install Retry
     - name: Lint with flake8
       run: |
         conda install flake8
