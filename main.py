@@ -55,7 +55,7 @@ def fhl_sign_in():
                     "version": "8.0.40"
                 }
             }
-        })
+        }, timeout=(15, 5))
         res = response.json()
         print(res['d']['Msg'])
     except requests.exceptions.RequestException as e:
@@ -79,7 +79,7 @@ def hyc_sign_in():
                     "version": "8.0.40"
                 }
             }
-        })
+        }, timeout=(15, 5))
         res = response.json()
         print(res['d']['Msg'])
     except requests.exceptions.RequestException as e:
