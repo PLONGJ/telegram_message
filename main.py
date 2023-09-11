@@ -9,14 +9,15 @@ from telethon.sync import TelegramClient
 
 import requests
 
+session = requests.session()
+session.mount('http://', requests.adapters.HTTPAdapter(max_retries=3))
+session.mount('https://', requests.adapters.HTTPAdapter(max_retries=3))
+
 
 def hfvmall_sing_in():
     try:
         # token = 'GS_bkJpIwkuLS-EAtClzWQ2ZkygKuydE'
         token = os.getenv('WX_VMALL_APPID')
-        session = requests.session()
-        session.mount('http://', requests.adapters.HTTPAdapter(max_retries=3))
-        session.mount('https://', requests.adapters.HTTPAdapter(max_retries=3))
 
         response = session.post('https://m.mallcoo.cn/api/user/User/CheckinV2', {}, {
             "MallID": 12614,
@@ -30,7 +31,7 @@ def hfvmall_sing_in():
                     "version": "8.0.40"
                 }
             }
-        })
+        }, timeout=(15, 5))
         res = response.json()
         print(res['d']['Msg'])
     except requests.exceptions.RequestException as e:
@@ -41,10 +42,6 @@ def fhl_sign_in():
     try:
         # token = 'UqO_q0V9HUCQj06okIAQUgiFiooQT91k'
         token = os.getenv('WX_FHL_APPID')
-
-        session = requests.session()
-        session.mount('http://', requests.adapters.HTTPAdapter(max_retries=3))
-        session.mount('https://', requests.adapters.HTTPAdapter(max_retries=3))
 
         response = session.post('https://m.mallcoo.cn/api/user/User/CheckinV2', {}, {
             "MallID": 11906,
@@ -69,10 +66,6 @@ def hyc_sign_in():
     try:
         # token = 'UqO_q0V9HUCQj06okIAQUgiFiooQT91k'
         token = os.getenv('WX_HYC_APPID')
-
-        session = requests.session()
-        session.mount('http://', requests.adapters.HTTPAdapter(max_retries=3))
-        session.mount('https://', requests.adapters.HTTPAdapter(max_retries=3))
 
         response = session.post('https://m.mallcoo.cn/api/user/User/CheckinV2', {}, {
             "MallID": 11898,
