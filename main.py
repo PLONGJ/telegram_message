@@ -4,6 +4,7 @@
 # 按 双击 Shift 在所有地方搜索类、文件、工具窗口、操作和设置。
 import os
 import time
+from requests.adapters import Retry
 from telethon.sync import TelegramClient
 
 import requests
@@ -13,7 +14,11 @@ def hfvmall_sing_in():
     try:
         # token = 'GS_bkJpIwkuLS-EAtClzWQ2ZkygKuydE'
         token = os.getenv('WX_VMALL_APPID')
-        response = requests.post('https://m.mallcoo.cn/api/user/User/CheckinV2', {}, {
+        session = requests.session()
+        session.mount('http://', requests.adapters.HTTPAdapter(max_retries=3))
+        session.mount('https://', requests.adapters.HTTPAdapter(max_retries=3))
+
+        response = session.post('https://m.mallcoo.cn/api/user/User/CheckinV2', {}, {
             "MallID": 12614,
             "Header": {
                 "Token": '{},17403'.format(token),
@@ -36,7 +41,12 @@ def fhl_sign_in():
     try:
         # token = 'UqO_q0V9HUCQj06okIAQUgiFiooQT91k'
         token = os.getenv('WX_FHL_APPID')
-        response = requests.post('https://m.mallcoo.cn/api/user/User/CheckinV2', {}, {
+
+        session = requests.session()
+        session.mount('http://', requests.adapters.HTTPAdapter(max_retries=3))
+        session.mount('https://', requests.adapters.HTTPAdapter(max_retries=3))
+
+        response = session.post('https://m.mallcoo.cn/api/user/User/CheckinV2', {}, {
             "MallID": 11906,
             "Header": {
                 "Token": '{},16842'.format(token),
@@ -59,7 +69,12 @@ def hyc_sign_in():
     try:
         # token = 'UqO_q0V9HUCQj06okIAQUgiFiooQT91k'
         token = os.getenv('WX_HYC_APPID')
-        response = requests.post('https://m.mallcoo.cn/api/user/User/CheckinV2', {}, {
+
+        session = requests.session()
+        session.mount('http://', requests.adapters.HTTPAdapter(max_retries=3))
+        session.mount('https://', requests.adapters.HTTPAdapter(max_retries=3))
+
+        response = session.post('https://m.mallcoo.cn/api/user/User/CheckinV2', {}, {
             "MallID": 11898,
             "Header": {
                 "Token": '{},16842'.format(token),
