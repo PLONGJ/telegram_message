@@ -6,6 +6,7 @@ import os
 import time
 from requests.adapters import Retry
 from telethon.sync import TelegramClient
+import json
 
 import requests
 
@@ -36,6 +37,7 @@ def hfvmall_sing_in():
         print(res['d']['Msg'])
     except requests.exceptions.RequestException as e:
         print(e)
+        send_message_by_wx_pusher('签到失败', '华发商都签到失败')
 
 
 def fhl_sign_in():
@@ -60,6 +62,7 @@ def fhl_sign_in():
         print(res['d']['Msg'])
     except requests.exceptions.RequestException as e:
         print(e)
+        send_message_by_wx_pusher('签到失败', '富华里签到失败')
 
 
 def hyc_sign_in():
@@ -84,6 +87,7 @@ def hyc_sign_in():
         print(res['d']['Msg'])
     except requests.exceptions.RequestException as e:
         print(e)
+        send_message_by_wx_pusher('签到失败', '环宇城签到失败')
 
 
 def sendMessage():
@@ -110,6 +114,32 @@ def sendMessage():
         client.session.save()
     except Exception as e:
         print(e)
+
+
+def send_message_by_wx_pusher(summary, content):
+    send_url = 'http://wxpusher.zjiecode.com/api/send/message'
+
+    uuId = 'UID_UD4BsM92ESQcGn8JHsYeSyfkROmV'
+    appToken = 'AT_gMb8L2Bp7ckyU8DO2a2dXyVc0aLB3UYS'
+
+    headers = {
+        'content-type': 'application/json'
+    }
+
+    params = {
+        'appToken': appToken,
+        'content': content,
+        'summary': summary,
+        'contentType': 1,
+        'uids': [uuId]
+    }
+    pages = requests.post(send_url, data=json.dumps(params), headers=headers)
+
+    result = pages.json()
+    if result['code'] == 1000:
+        print('发送消息成功')
+    else:
+        print('发送消息失败{0}'.format(result['msg']))
 
 
 # 按间距中的绿色按钮以运行脚本。
