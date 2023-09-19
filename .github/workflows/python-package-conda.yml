@@ -43,5 +43,6 @@ jobs:
         WX_VMALL_APPID: ${{ secrets.WX_VMALL_APPID }}
         WX_FHL_APPID: ${{ secrets.WX_FHL_APPID }}
         WX_HYC_APPID: ${{ secrets.WX_HYC_APPID }}
+        YMGC_TOKEN: ${{ secrets.YMGC_TOKEN }}
       run: |
         python ./main.py
