@@ -15,6 +15,25 @@ session.mount('http://', requests.adapters.HTTPAdapter(max_retries=3))
 session.mount('https://', requests.adapters.HTTPAdapter(max_retries=3))
 
 
+def ymgc_sign_in():
+    # token = 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJzcXFfYXV0aCIsImNsaWVudFR5cGUiOjMsIm9wZW5JZCI6Im9KZ20zNU1UZXI3b0NESDFyeUoxdDIxWnlDYjAiLCJtb2JpbGUiOiIxMzUwMDI0MDkyOSIsImV4cCI6MTY5NTYzNDA0NSwiaWF0IjoxNjk1MDI5MjQ1LCJtZW1iZXJJZCI6IjExMDQ1MDEwMDA5MDk4NyJ9.9SQTob9Nu3LNAvPLx-GrOc41UR8-JiCaSvlHBXZ9SW8'
+
+    token = os.getenv('YMGC_TOKEN')
+    try:
+        response = session.post('https://api.alldragon.com/mkt2/checkin/checkin.json', headers={
+            "Authorization": token,
+        }, params={
+            "tenantId": 4142,
+            "tenantCode": "zhymgc",
+            "clientType": 3
+        }, timeout=(15, 3))
+        res = response.json()
+        print(res['msg'])
+    except requests.exceptions.RequestException as e:
+        print(e)
+        send_message_by_wx_pusher('签到失败', '扬名广场签到失败')
+
+
 def hfvmall_sing_in():
     try:
         # token = 'GS_bkJpIwkuLS-EAtClzWQ2ZkygKuydE'
@@ -144,7 +163,8 @@ def send_message_by_wx_pusher(summary, content):
 
 # 按间距中的绿色按钮以运行脚本。
 if __name__ == '__main__':
+    # ymgc_sign_in()
     hfvmall_sing_in()
-    fhl_sign_in()
-    hyc_sign_in()
-    sendMessage()
+    # fhl_sign_in()
+    # hyc_sign_in()
+    # sendMessage()
