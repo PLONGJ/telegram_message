@@ -36,7 +36,7 @@ def ymgc_sign_in():
 
 def hfvmall_sing_in():
     try:
-        # token = 'GS_bkJpIwkuLS-EAtClzWQ2ZkygKuydE'
+        # token = 'bXPCCvEodkyIl1qK-xjslQR2hgcPOJM0'
         token = os.getenv('WX_VMALL_APPID')
 
         response = session.post('https://m.mallcoo.cn/api/user/User/CheckinV2', {}, {
@@ -163,8 +163,8 @@ def send_message_by_wx_pusher(summary, content):
 
 # 按间距中的绿色按钮以运行脚本。
 if __name__ == '__main__':
-    # ymgc_sign_in()
+    ymgc_sign_in()
     hfvmall_sing_in()
-    # fhl_sign_in()
-    # hyc_sign_in()
-    # sendMessage()
+    fhl_sign_in()
+    hyc_sign_in()
+    sendMessage()
