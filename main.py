@@ -166,5 +166,5 @@ if __name__ == '__main__':
     ymgc_sign_in()
     hfvmall_sing_in()
     fhl_sign_in()
-    hyc_sign_in()
+    # hyc_sign_in()
     sendMessage()
