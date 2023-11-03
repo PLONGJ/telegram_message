@@ -29,6 +29,8 @@ def ymgc_sign_in():
         }, timeout=(15, 3))
         res = response.json()
         print(res['msg'])
+        if cmp(res['msg'],"SUCCESS") != 0:
+            send_message_by_wx_pusher('签到失败', '扬名广场签到失败')
     except requests.exceptions.RequestException as e:
         print(e)
         send_message_by_wx_pusher('签到失败', '扬名广场签到失败')
