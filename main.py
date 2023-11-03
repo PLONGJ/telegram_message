@@ -4,9 +4,11 @@
 # 按 双击 Shift 在所有地方搜索类、文件、工具窗口、操作和设置。
 import os
 import time
+
 from requests.adapters import Retry
 from telethon.sync import TelegramClient
 import json
+import operator
 
 import requests
 
@@ -29,7 +31,7 @@ def ymgc_sign_in():
         }, timeout=(15, 3))
         res = response.json()
         print(res['msg'])
-        if cmp(res['msg'],"SUCCESS") != 0:
+        if operator.eq(res['msg'], "SUCCESS") is not True:
             send_message_by_wx_pusher('签到失败', '扬名广场签到失败')
     except requests.exceptions.RequestException as e:
         print(e)
@@ -38,8 +40,8 @@ def ymgc_sign_in():
 
 def hfvmall_sing_in():
     try:
-        # token = 'bXPCCvEodkyIl1qK-xjslQR2hgcPOJM0'
-        token = os.getenv('WX_VMALL_APPID')
+        token = 'bXPCCvEodkyIl1qK-xjslQR2hgcPOJM0'
+        # token = os.getenv('WX_VMALL_APPID')
 
         response = session.post('https://m.mallcoo.cn/api/user/User/CheckinV2', {}, {
             "MallID": 12614,
@@ -63,8 +65,8 @@ def hfvmall_sing_in():
 
 def fhl_sign_in():
     try:
-        # token = 'UqO_q0V9HUCQj06okIAQUgiFiooQT91k'
-        token = os.getenv('WX_FHL_APPID')
+        token = 'b1JzZxVARUinuC-b8DWngASFUMiLmLtU'
+        # token = os.getenv('WX_FHL_APPID')
 
         response = session.post('https://m.mallcoo.cn/api/user/User/CheckinV2', {}, {
             "MallID": 11906,
@@ -88,8 +90,8 @@ def fhl_sign_in():
 
 def hyc_sign_in():
     try:
-        # token = 'UqO_q0V9HUCQj06okIAQUgiFiooQT91k'
-        token = os.getenv('WX_HYC_APPID')
+        token = 'b1JzZxVARUinuC-b8DWngASFUMiLmLtU'
+        # token = os.getenv('WX_HYC_APPID')
 
         response = session.post('https://m.mallcoo.cn/api/user/User/CheckinV2', {}, {
             "MallID": 11898,
