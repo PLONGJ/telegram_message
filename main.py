@@ -57,7 +57,7 @@ def hfvmall_sing_in():
             }
         }, timeout=(15, 5))
         res = response.json()
-        print(res['d']['Msg'])
+        print(res)
     except requests.exceptions.RequestException as e:
         print(e)
         send_message_by_wx_pusher('签到失败', '华发商都签到失败')
