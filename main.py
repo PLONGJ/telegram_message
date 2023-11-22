@@ -48,11 +48,11 @@ def hfvmall_sing_in():
             "Header": {
                 "Token": '{},17403'.format(token),
                 "systemInfo": {
-                    "miniVersion": "DZ.2.5.63.2.SNS.7",
-                    "system": "iOS 16.6",
+                    "miniVersion": "DZ.2.65.0.SNS.9",
+                    "system": "iOS 17.1.1",
                     "model": "iPhone 13 Pro<iPhone14,2>",
-                    "SDKVersion": "3.0.1",
-                    "version": "8.0.40"
+                    "SDKVersion": "3.2.2",
+                    "version": "8.0.43"
                 }
             }
         }, timeout=(15, 5))
