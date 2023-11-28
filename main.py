@@ -30,7 +30,7 @@ def ymgc_sign_in():
             "clientType": 3
         }, timeout=(15, 3))
         res = response.json()
-        print(res['msg'])
+        print("扬明广场签到：",res['msg'])
         if operator.eq(res['msg'], "SUCCESS") is not True:
             send_message_by_wx_pusher('签到失败', '扬名广场签到失败')
     except requests.exceptions.RequestException as e:
@@ -57,7 +57,7 @@ def hfvmall_sing_in():
             }
         }, timeout=(15, 5))
         res = response.json()
-        print(res)
+        print("华发商都签到：",res)
     except requests.exceptions.RequestException as e:
         print(e)
         send_message_by_wx_pusher('签到失败', '华发商都签到失败')
@@ -82,7 +82,7 @@ def fhl_sign_in():
             }
         }, timeout=(15, 5))
         res = response.json()
-        print(res['d']['Msg'])
+        print("富华里签到：",res)
     except requests.exceptions.RequestException as e:
         print(e)
         send_message_by_wx_pusher('签到失败', '富华里签到失败')
@@ -107,7 +107,7 @@ def hyc_sign_in():
             }
         }, timeout=(15, 5))
         res = response.json()
-        print(res['d']['Msg'])
+        print("环宇城签到:",res)
     except requests.exceptions.RequestException as e:
         print(e)
         send_message_by_wx_pusher('签到失败', '环宇城签到失败')
