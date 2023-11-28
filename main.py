@@ -40,8 +40,8 @@ def ymgc_sign_in():
 
 def hfvmall_sing_in():
     try:
-        token = 'bXPCCvEodkyIl1qK-xjslQR2hgcPOJM0'
-        # token = os.getenv('WX_VMALL_APPID')
+        # token = 'bXPCCvEodkyIl1qK-xjslQR2hgcPOJM0'
+        token = os.getenv('WX_VMALL_APPID')
 
         response = session.post('https://m.mallcoo.cn/api/user/User/CheckinV2', {}, {
             "MallID": 12614,
@@ -65,8 +65,8 @@ def hfvmall_sing_in():
 
 def fhl_sign_in():
     try:
-        token = 'b1JzZxVARUinuC-b8DWngASFUMiLmLtU'
-        # token = os.getenv('WX_FHL_APPID')
+        # token = 'b1JzZxVARUinuC-b8DWngASFUMiLmLtU'
+        token = os.getenv('WX_FHL_APPID')
 
         response = session.post('https://m.mallcoo.cn/api/user/User/CheckinV2', {}, {
             "MallID": 11906,
@@ -90,8 +90,8 @@ def fhl_sign_in():
 
 def hyc_sign_in():
     try:
-        token = 'b1JzZxVARUinuC-b8DWngASFUMiLmLtU'
-        # token = os.getenv('WX_HYC_APPID')
+        # token = 'b1JzZxVARUinuC-b8DWngASFUMiLmLtU'
+        token = os.getenv('WX_HYC_APPID')
 
         response = session.post('https://m.mallcoo.cn/api/user/User/CheckinV2', {}, {
             "MallID": 11898,
