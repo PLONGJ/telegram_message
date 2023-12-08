@@ -30,7 +30,7 @@ def ymgc_sign_in():
             "clientType": 3
         }, timeout=(15, 3))
         res = response.json()
-        print("扬明广场签到：",res)
+        print("扬明广场签到：", res)
         if operator.eq(res['msg'], "SUCCESS") is not True:
             send_message_by_wx_pusher('签到失败', '扬名广场签到失败')
     except requests.exceptions.RequestException as e:
@@ -57,7 +57,7 @@ def hfvmall_sing_in():
             }
         }, timeout=(15, 5))
         res = response.json()
-        print("华发商都签到：",res)
+        print("华发商都签到：", res)
     except requests.exceptions.RequestException as e:
         print(e)
         send_message_by_wx_pusher('签到失败', '华发商都签到失败')
@@ -82,7 +82,7 @@ def fhl_sign_in():
             }
         }, timeout=(15, 5))
         res = response.json()
-        print("富华里签到：",res)
+        print("富华里签到：", res)
     except requests.exceptions.RequestException as e:
         print(e)
         send_message_by_wx_pusher('签到失败', '富华里签到失败')
@@ -93,7 +93,7 @@ def hyc_sign_in():
         # token = 'b1JzZxVARUinuC-b8DWngASFUMiLmLtU'
         token = os.getenv('WX_HYC_APPID')
 
-        response = session.post('https://m.mallcoo.cn/api/user/User/CheckinV2', {}, {
+        response = session.post('https://m.mallcoo.cn/api/user/User/GetCheckinDetail', {}, {
             "MallID": 11898,
             "Header": {
                 "Token": '{},16842'.format(token),
@@ -107,7 +107,28 @@ def hyc_sign_in():
             }
         }, timeout=(15, 5))
         res = response.json()
-        print("环宇城签到:",res)
+        continue_day = res['d']['ContinueDay']
+        print('环宇城查询签到天数：',res)
+        print('环宇城连续签到天数:',continue_day)
+        if continue_day >= 30:
+            print('环宇城签到超过30天，本次跳过')
+            pass
+        else:
+            rp = session.post('https://m.mallcoo.cn/api/user/User/CheckinV2', {}, {
+                "MallID": 11898,
+                "Header": {
+                    "Token": '{},16842'.format(token),
+                    "systemInfo": {
+                        "miniVersion": "2.5.63.2",
+                        "system": "iOS 16.6",
+                        "model": "iPhone 13 Pro<iPhone14,2>",
+                        "SDKVersion": "3.0.1",
+                        "version": "8.0.40"
+                    }
+                }
+            }, timeout=(15, 5))
+            result = rp.json()
+            print("环宇城签到:", result)
     except requests.exceptions.RequestException as e:
         print(e)
         send_message_by_wx_pusher('签到失败', '环宇城签到失败')
