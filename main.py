@@ -90,7 +90,7 @@ def fhl_sign_in():
 
 def hyc_sign_in():
     try:
-        # token = 'b1JzZxVARUinuC-b8DWngASFUMiLmLtU'
+        # token = 'aG2WrGOb5EeIIZ3yzEpqVwlCZXr_Uyjk'
         token = os.getenv('WX_HYC_APPID')
 
         response = session.post('https://m.mallcoo.cn/api/user/User/GetCheckinDetail', {}, {
@@ -107,8 +107,8 @@ def hyc_sign_in():
             }
         }, timeout=(15, 5))
         res = response.json()
+        print('环宇城查询签到天数：', res)
         continue_day = res['d']['ContinueDay']
-        print('环宇城查询签到天数：',res)
         print('环宇城连续签到天数:',continue_day)
         if continue_day >= 30:
             print('环宇城签到超过30天，本次跳过')
