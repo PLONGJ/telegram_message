@@ -28,7 +28,7 @@ def ymgc_sign_in():
             "tenantId": 4142,
             "tenantCode": "zhymgc",
             "clientType": 3
-        }, timeout=(15, 3))
+        }, timeout=15)
         res = response.json()
         print("扬明广场签到：", res)
         if operator.eq(res['msg'], "SUCCESS") is not True:
@@ -55,7 +55,7 @@ def hfvmall_sing_in():
                     "version": "8.0.43"
                 }
             }
-        }, timeout=(15, 5))
+        }, timeout=15)
         res = response.json()
         print("华发商都签到：", res)
     except requests.exceptions.RequestException as e:
@@ -80,7 +80,7 @@ def fhl_sign_in():
                     "version": "8.0.40"
                 }
             }
-        }, timeout=(15, 5))
+        }, timeout=15)
         res = response.json()
         print("富华里签到：", res)
     except requests.exceptions.RequestException as e:
@@ -105,7 +105,7 @@ def hyc_sign_in():
                     "version": "8.0.40"
                 }
             }
-        }, timeout=(15, 5))
+        }, timeout=15)
         res = response.json()
         print('环宇城查询签到天数：', res)
         continue_day = res['d']['ContinueDay']
@@ -126,7 +126,7 @@ def hyc_sign_in():
                         "version": "8.0.40"
                     }
                 }
-            }, timeout=(15, 5))
+            }, timeout=15)
             result = rp.json()
             print("环宇城签到:", result)
     except requests.exceptions.RequestException as e:
