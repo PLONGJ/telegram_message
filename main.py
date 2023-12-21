@@ -8,7 +8,6 @@ import time
 from requests.adapters import Retry
 from telethon.sync import TelegramClient
 import json
-import operator
 
 import requests
 
@@ -31,7 +30,7 @@ def ymgc_sign_in():
         }, timeout=15)
         res = response.json()
         print("扬明广场签到：", res)
-        if operator.eq(res['msg'], "SUCCESS") is not True:
+        if res['success'] is not True:
             send_message_by_wx_pusher('签到失败', '扬名广场签到失败')
     except requests.exceptions.RequestException as e:
         print(e)
