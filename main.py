@@ -4,6 +4,7 @@
 # 按 双击 Shift 在所有地方搜索类、文件、工具窗口、操作和设置。
 import os
 import time
+import datetime
 
 from requests.adapters import Retry
 from telethon.sync import TelegramClient
@@ -18,8 +19,8 @@ session.mount('https://', requests.adapters.HTTPAdapter(max_retries=3))
 
 def ymgc_sign_in():
     # token = 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJzcXFfYXV0aCIsImNsaWVudFR5cGUiOjMsIm9wZW5JZCI6Im9KZ20zNU1UZXI3b0NESDFyeUoxdDIxWnlDYjAiLCJtb2JpbGUiOiIxMzUwMDI0MDkyOSIsImV4cCI6MTY5NTYzNDA0NSwiaWF0IjoxNjk1MDI5MjQ1LCJtZW1iZXJJZCI6IjExMDQ1MDEwMDA5MDk4NyJ9.9SQTob9Nu3LNAvPLx-GrOc41UR8-JiCaSvlHBXZ9SW8'
-
     token = os.getenv('YMGC_TOKEN')
+
     try:
         response = session.post('https://api.alldragon.com/mkt2/checkin/checkin.json', headers={
             "Authorization": token,
@@ -106,10 +107,12 @@ def hyc_sign_in():
             }
         }, timeout=15)
         res = response.json()
-        print('环宇城查询签到天数：', res)
+        print('环宇城查询签到天数返回JSON：', res)
         continue_day = res['d']['ContinueDay']
-        print('环宇城连续签到天数:',continue_day)
-        if continue_day >= 30:
+        now_time = datetime.datetime.now().date()
+        end_time = datetime.datetime.strptime(res['d']['EndTime'], '%Y/%m/%d %H:%M:%S').date()
+        print('环宇城连续签到天数:', continue_day)
+        if continue_day >= 30 and now_time == end_time:
             print('环宇城签到超过30天，本次跳过')
             pass
         else:
