@@ -109,10 +109,14 @@ def hyc_sign_in():
         res = response.json()
         print('环宇城查询签到天数返回JSON：', res)
         continue_day = res['d']['ContinueDay']
-        now_time = datetime.datetime.now().date()
-        end_time = datetime.datetime.strptime(res['d']['EndTime'], '%Y/%m/%d %H:%M:%S').date()
+        now_date = datetime.datetime.now().date()
+        end_date = datetime.datetime.strptime(res['d']['EndTime'], '%Y/%m/%d %H:%M:%S').date()
+        check_date = end_date + datetime.timedelta(days=1)
         print('环宇城连续签到天数:', continue_day)
-        if continue_day >= 30 and now_time == end_time:
+        if now_date == end_date:
+            print('今日已签到，无需签到')
+            pass
+        elif continue_day >= 30 and now_date == check_date:
             print('环宇城签到超过30天，本次跳过')
             pass
         else:
