@@ -13,6 +13,7 @@ import json
 import requests
 
 session = requests.session()
+
 session.mount('http://', requests.adapters.HTTPAdapter(max_retries=3))
 session.mount('https://', requests.adapters.HTTPAdapter(max_retries=3))
 
@@ -28,7 +29,7 @@ def ymgc_sign_in():
             "tenantId": 4142,
             "tenantCode": "zhymgc",
             "clientType": 3
-        }, timeout=15)
+        }, timeout=15, verify=False)
         res = response.json()
         print("扬明广场签到：", res)
         if res['code'] != 200:
@@ -55,7 +56,7 @@ def hfvmall_sing_in():
                     "version": "8.0.43"
                 }
             }
-        }, timeout=15)
+        }, timeout=15, verify=False)
         res = response.json()
         print("华发商都签到：", res)
     except requests.exceptions.RequestException as e:
@@ -80,7 +81,7 @@ def fhl_sign_in():
                     "version": "8.0.40"
                 }
             }
-        }, timeout=15)
+        }, timeout=15, verify=False)
         res = response.json()
         print("富华里签到：", res)
     except requests.exceptions.RequestException as e:
@@ -105,7 +106,7 @@ def hyc_sign_in():
                     "version": "8.0.40"
                 }
             }
-        }, timeout=15)
+        }, timeout=15, verify=False)
         res = response.json()
         print('环宇城查询签到天数返回JSON：', res)
         continue_day = res['d']['ContinueDay']
