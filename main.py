@@ -141,7 +141,7 @@ def hyc_sign_in():
         send_message_by_wx_pusher('签到失败', '环宇城签到失败')
 
 
-def sendMessage():
+def telegram_checkin():
     try:
         api_id = os.getenv('TG_APP_ID')
 
@@ -195,8 +195,8 @@ def send_message_by_wx_pusher(summary, content):
 
 # 按间距中的绿色按钮以运行脚本。
 if __name__ == '__main__':
+    telegram_checkin()
     ymgc_sign_in()
     hfvmall_sing_in()
     fhl_sign_in()
     hyc_sign_in()
-    sendMessage()
