@@ -33,7 +33,7 @@ def ymgc_sign_in():
         res = response.json()
         print("扬明广场签到：", res)
         if res['code'] != 200:
-            send_message_by_wx_pusher('签到失败', '扬名广场签到失败')
+            send_message_by_wx_pusher('签到失败', res['msg'])
     except requests.exceptions.RequestException as e:
         print(e)
         send_message_by_wx_pusher('签到失败', '扬名广场签到失败')
