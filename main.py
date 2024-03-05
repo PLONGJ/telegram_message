@@ -33,10 +33,10 @@ def ymgc_sign_in():
         res = response.json()
         print("扬明广场签到：", res)
         if res['code'] != 200:
-            send_message_by_wx_pusher('签到失败', res['msg'])
+            send_message_by_wx_pusher('扬民广场签到失败',"扬民广场签到失败："+res['msg'])
     except requests.exceptions.RequestException as e:
         print(e)
-        send_message_by_wx_pusher('签到失败', '扬名广场签到失败')
+        send_message_by_wx_pusher('扬民广场签到失败', '扬名广场签到失败')
 
 
 def hfvmall_sing_in():
@@ -61,7 +61,7 @@ def hfvmall_sing_in():
         print("华发商都签到：", res)
     except requests.exceptions.RequestException as e:
         print(e)
-        send_message_by_wx_pusher('签到失败', '华发商都签到失败')
+        send_message_by_wx_pusher('华发商都签到失败', '华发商都签到失败')
 
 
 def fhl_sign_in():
@@ -86,7 +86,7 @@ def fhl_sign_in():
         print("富华里签到：", res)
     except requests.exceptions.RequestException as e:
         print(e)
-        send_message_by_wx_pusher('签到失败', '富华里签到失败')
+        send_message_by_wx_pusher('富华里签到失败', '富华里签到失败')
 
 
 def hyc_sign_in():
@@ -138,7 +138,7 @@ def hyc_sign_in():
             print("环宇城签到:", result)
     except requests.exceptions.RequestException as e:
         print(e)
-        send_message_by_wx_pusher('签到失败', '环宇城签到失败')
+        send_message_by_wx_pusher('环宇城签到失败', '环宇城签到失败')
 
 
 def telegram_checkin():
