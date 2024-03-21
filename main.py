@@ -58,7 +58,10 @@ def hfvmall_sing_in():
             }
         }, timeout=15, verify=False)
         res = response.json()
-        print("华发商都签到：", res)
+        if res['m'] != 1:
+            send_message_by_wx_pusher('华发商都签到失败', '华发商都签到失败'+res['msg'])
+        else:
+            print("华发商都签到：", res)
     except requests.exceptions.RequestException as e:
         print(e)
         send_message_by_wx_pusher('华发商都签到失败', '华发商都签到失败')
@@ -83,7 +86,10 @@ def fhl_sign_in():
             }
         }, timeout=15, verify=False)
         res = response.json()
-        print("富华里签到：", res)
+        if res['m'] != 1:
+            send_message_by_wx_pusher('富华里签到失败', '富华里签到失败'+res['msg'])
+        else:
+            print("富华里签到：", res)
     except requests.exceptions.RequestException as e:
         print(e)
         send_message_by_wx_pusher('富华里签到失败', '富华里签到失败')
