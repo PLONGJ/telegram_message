@@ -88,7 +88,7 @@ def fhl_sign_in():
         }, timeout=15)
         res = response.json()
         if res['m'] != 1:
-            send_message_by_wx_pusher('富华里签到失败', '富华里签到失败'+res['msg'])
+            send_message_by_wx_pusher('富华里签到失败', '富华里签到失败' + res['e'])
         else:
             print("富华里签到：", res)
     except requests.exceptions.RequestException as e:
