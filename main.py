@@ -60,7 +60,7 @@ def hfvmall_sing_in():
         res = response.json()
         print(res)
         if res['m'] != 1:
-            send_message_by_wx_pusher('华发商都签到失败', '华发商都签到失败'+res['msg'])
+            send_message_by_wx_pusher('华发商都签到失败', '华发商都签到失败' + res['e'])
         else:
             print("华发商都签到：", res)
     except requests.exceptions.RequestException as e:
