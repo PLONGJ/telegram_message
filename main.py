@@ -29,7 +29,7 @@ def ymgc_sign_in():
             "tenantId": 4142,
             "tenantCode": "zhymgc",
             "clientType": 3
-        }, timeout=15, verify=False)
+        }, timeout=15)
         res = response.json()
         print("扬明广场签到：", res)
         if res['code'] != 200:
@@ -56,7 +56,7 @@ def hfvmall_sing_in():
                     "version": "8.0.43"
                 }
             }
-        }, timeout=15, verify=False)
+        }, timeout=15)
         res = response.json()
         if res['m'] != 1:
             send_message_by_wx_pusher('华发商都签到失败', '华发商都签到失败'+res['msg'])
@@ -84,7 +84,7 @@ def fhl_sign_in():
                     "version": "8.0.40"
                 }
             }
-        }, timeout=15, verify=False)
+        }, timeout=15)
         res = response.json()
         if res['m'] != 1:
             send_message_by_wx_pusher('富华里签到失败', '富华里签到失败'+res['msg'])
@@ -112,7 +112,7 @@ def hyc_sign_in():
                     "version": "8.0.40"
                 }
             }
-        }, timeout=15, verify=False)
+        }, timeout=15)
         res = response.json()
         print('环宇城查询签到天数返回JSON：', res)
         continue_day = res['d']['ContinueDay']
