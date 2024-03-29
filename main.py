@@ -58,6 +58,7 @@ def hfvmall_sing_in():
             }
         }, timeout=15)
         res = response.json()
+        print(res)
         if res['m'] != 1:
             send_message_by_wx_pusher('华发商都签到失败', '华发商都签到失败'+res['msg'])
         else:
