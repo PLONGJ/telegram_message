@@ -49,11 +49,11 @@ def hfvmall_sing_in():
             "Header": {
                 "Token": '{},17403'.format(token),
                 "systemInfo": {
-                    "miniVersion": "DZ.2.65.0.SNS.9",
-                    "system": "iOS 17.1.1",
+                    "miniVersion": "DZ.2.67.6.byn.1",
+                    "system": "iOS 17.6.1",
                     "model": "iPhone 13 Pro<iPhone14,2>",
-                    "SDKVersion": "3.2.2",
-                    "version": "8.0.43"
+                    "SDKVersion": "3.5.4",
+                    "version": "8.0.50"
                 }
             }
         }, timeout=15)
@@ -78,11 +78,11 @@ def fhl_sign_in():
             "Header": {
                 "Token": '{},16842'.format(token),
                 "systemInfo": {
-                    "miniVersion": "2.5.63.2",
-                    "system": "iOS 16.6",
+                    "miniVersion": "DZ.2.67.6.byn.1",
+                    "system": "iOS 17.6.1",
                     "model": "iPhone 13 Pro<iPhone14,2>",
-                    "SDKVersion": "3.0.1",
-                    "version": "8.0.40"
+                    "SDKVersion": "3.5.4",
+                    "version": "8.0.50"
                 }
             }
         }, timeout=15)
@@ -100,49 +100,22 @@ def hyc_sign_in():
     try:
         # token = 'aG2WrGOb5EeIIZ3yzEpqVwlCZXr_Uyjk'
         token = os.getenv('WX_HYC_APPID')
-
-        response = session.post('https://m.mallcoo.cn/api/user/User/GetCheckinDetail', {}, {
+        
+        rp = session.post('https://m.mallcoo.cn/api/user/User/CheckinV2', {}, {
             "MallID": 11898,
             "Header": {
                 "Token": '{},16842'.format(token),
                 "systemInfo": {
-                    "miniVersion": "2.5.63.2",
-                    "system": "iOS 16.6",
+                    "miniVersion": "DZ.2.67.6.byn.1",
+                    "system": "iOS 17.6.1",
                     "model": "iPhone 13 Pro<iPhone14,2>",
-                    "SDKVersion": "3.0.1",
-                    "version": "8.0.40"
+                    "SDKVersion": "3.5.4",
+                    "version": "8.0.50"
                 }
             }
         }, timeout=15)
-        res = response.json()
-        print('环宇城查询签到天数返回JSON：', res)
-        continue_day = res['d']['ContinueDay']
-        now_date = datetime.datetime.now().date()
-        end_date = datetime.datetime.strptime(res['d']['EndTime'], '%Y/%m/%d %H:%M:%S').date()
-        check_date = end_date + datetime.timedelta(days=1)
-        print('环宇城连续签到天数:', continue_day)
-        if now_date == end_date:
-            print('今日已签到，无需签到')
-            pass
-        elif continue_day >= 30 and now_date == check_date:
-            print('环宇城签到超过30天，本次跳过')
-            pass
-        else:
-            rp = session.post('https://m.mallcoo.cn/api/user/User/CheckinV2', {}, {
-                "MallID": 11898,
-                "Header": {
-                    "Token": '{},16842'.format(token),
-                    "systemInfo": {
-                        "miniVersion": "2.5.63.2",
-                        "system": "iOS 16.6",
-                        "model": "iPhone 13 Pro<iPhone14,2>",
-                        "SDKVersion": "3.0.1",
-                        "version": "8.0.40"
-                    }
-                }
-            }, timeout=15)
-            result = rp.json()
-            print("环宇城签到:", result)
+        result = rp.json()
+        print("环宇城签到:", result)
     except requests.exceptions.RequestException as e:
         print(e)
         send_message_by_wx_pusher('环宇城签到失败', '环宇城签到失败')
