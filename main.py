@@ -205,5 +205,5 @@ if __name__ == '__main__':
     telegram_checkin()
     ymgc_sign_in()
     hfvmall_sing_in()
-    fhl_sign_in()
-    hyc_sign_in()
+    # fhl_sign_in()
+    # hyc_sign_in()
